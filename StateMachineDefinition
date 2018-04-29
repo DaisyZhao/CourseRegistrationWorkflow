@@ -1,0 +1,42 @@
+{
+  "Comment": "workflow of course registration",
+  "StartAt": "registerCourse",
+  "States": {
+    "registerCourse": {
+      "Type": "Task",
+      "Resource": "",
+      "Next": "ChoiceState"
+    },
+    "ChoiceState": {
+      "Type" : "Choice",
+      "Choices": [
+        {
+          "Variable": "$.courseName",
+          "StringEquals": "",
+          "Next": "changeStudentStatus"
+        }
+      ],
+      "Default": "chargeCourse"
+    },
+    "changeStudentStatus": {
+      "Type": "Task",
+      "Resource": "",
+      "End": true
+    },
+    "chargeCourse": {
+      "Type": "Task",
+      "Resource": "",
+      "Next": "updateCourseInfo"
+    },
+    "updateCourseInfo": {
+      "Type": "Task",
+      "Resource": "",
+      "Next": "sendNotification"
+    },
+    "sendNotification": {
+      "Type": "Task",
+      "Resource": "",
+      "End": true
+    }
+  }
+}
